@@ -2,10 +2,12 @@
 
 To experiment with that code, run `bin/console` for an interactive prompt.
 
-[API Documentation](https://developers.rakutenmarketing.com/console/registry/resource/_system/governance/apimgt/applicationdata/provider/RakutenMarketing/artifacts/API_Developer_Portal-Acquiring_Your_Access_Token_Guide.pdf)
+## API Documentation
 
-[API Overview](https://developers.rakutenmarketing.com/subscribe/)
-[API Keys](https://developers.rakutenmarketing.com/subscribe/site/pages/subscriptions.jag)
+The API documentation can be found at the following links.
+- [API Documentation PDF](https://developers.rakutenmarketing.com/console/registry/resource/_system/governance/apimgt/applicationdata/provider/RakutenMarketing/artifacts/API_Developer_Portal-Acquiring_Your_Access_Token_Guide.pdf)
+- [API Overview](https://developers.rakutenmarketing.com/subscribe/)
+- [API Keys](https://developers.rakutenmarketing.com/subscribe/site/pages/subscriptions.jag)
 
 ## Installation
 
