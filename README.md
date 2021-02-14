@@ -1,8 +1,6 @@
 # RakutenProductApi
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rakuten_product_api`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+To experiment with that code, run `bin/console` for an interactive prompt.
 
 [API Documentation](https://developers.rakutenmarketing.com/console/registry/resource/_system/governance/apimgt/applicationdata/provider/RakutenMarketing/artifacts/API_Developer_Portal-Acquiring_Your_Access_Token_Guide.pdf)
 
@@ -50,7 +48,7 @@ client.username
 => "dkam"
 ```
 
-Your client should be threadsafe.  Configuration values are local to your instance.z
+This client should be threadsafe.  Configuration values are local to your instance.
 
 
 ## Development
