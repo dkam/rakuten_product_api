@@ -39,7 +39,7 @@ RakutenProductApi.configure do |config|
 end
 ```
 
-Additionally, you can configure a Merchant ID (mid).  This be applied to all requests and restrict queries to that merchant.
+Additionally, you can configure a Merchant ID (mid).  This will be applied to all requests and restrict queries to that merchant.
 
 Once you have configured the library, you can create a client.
 
