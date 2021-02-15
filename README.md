@@ -39,7 +39,7 @@ RakutenProductApi.configure do |config|
 end
 ```
 
-Additionally, you can configure a Merchant ID (mid).  This will be applied to all requests and restrict queries to that merchant.
+Additionally, you can configure a mid (Merchant ID).  This will be applied to all requests and restrict queries to that merchant.
 
 Once you have configured the library, you can create a client.
 
@@ -95,12 +95,15 @@ When using sort, you must also use sorttype ( 'asc' or 'dsc').  See the document
 
 This client should be threadsafe.  Configuration values are local to your instance.
 
+## TODO
+
+This library implement the parts I need. For example, it doesn't handle paging through results as I don't need it, but I'm happy to accept pull request.
+
 ## Notes
 
 * ISBN is taken from either the `sku` or the `keywords` fields and mached against a regular expression `/97[98]\d{10}/` as there's no specific field for it.
 * Condition is guessed by looking for the string "Used" in the description.  This is a terrible idea, but there is no field for condition.
-* This library aliases RRP -> price and price -> saleprice.  When sorting you need to use the original attribute names ( price / saleprice )
-
+* This library aliases rrp -> price and price -> saleprice.  When sorting you need to use the original attribute names ( price / saleprice )
 
 ## Development
 

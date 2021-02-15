@@ -16,7 +16,9 @@ module RakutenProductApi
                   :password, 
                   :consumer_key, 
                   :consumer_secret,
-                  :mid
+                  :mid,
+                  :sort,
+                  :sorttype
     def configure
       yield self
       true

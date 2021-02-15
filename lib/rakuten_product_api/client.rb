@@ -16,7 +16,9 @@ module RakutenProductApi
                    password:        RakutenProductApi.password,
                    consumer_key:    RakutenProductApi.consumer_key,
                    consumer_secret: RakutenProductApi.consumer_secret,
-                   mid:             RakutenProductApi.mid
+                   mid:             RakutenProductApi.mid,
+                   sort:            RakutenProductApi.sort,
+                   sorttype:        RakutenProductApi.sorttype
                   )
 
       @sid = sid
@@ -25,12 +27,18 @@ module RakutenProductApi
       @consumer_key = consumer_key
       @consumer_secret = consumer_secret
       @mid = mid
-      
+      @sort = sort
+      @sorttype = sorttype
+
       @auth_expires_at = nil
     end
 
     def default_params
-      @mid.nil? ? {} : {mid: @mid}
+      dp = {}
+      dp[:mid]      = @mid unless @mid.nil?
+      dp[:sort]     = @sort unless @sort.nil?
+      dp[:sorttype] = @sorttype unless @sorttype.nil?      
+      dp
     end
     
     def request_auth_token

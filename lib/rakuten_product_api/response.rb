@@ -10,5 +10,9 @@ module RakutenProductApi
 
       @items = @raw.xpath("result/item").map {|d| Item.new(d)}
     end
+    
+    def body
+      @raw.to_s
+    end
   end
 end
