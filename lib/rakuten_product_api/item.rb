@@ -32,7 +32,8 @@ module RakutenProductApi
     end
 
     def isbn
-      at_xpath("sku")&.text[/97[98]\d{10}/] || at_xpath("keywords")&.text[/97[98]\d{10}/]
+      return at_xpath("sku").text[/97[98]\d{10}/] if at_xpath("sku")&.text.match?(/97[98]\d{10}/)
+      return at_xpath("keywords")&.text[/97[98]\d{10}/] if at_xpath("keywords").text.match?(/97[98]\d{10}/)
     end
 
     def link

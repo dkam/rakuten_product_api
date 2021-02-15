@@ -124,12 +124,10 @@ module RakutenProductApi
 
         http.request(req)
       end
-      if res.code == "200"
-        res
-      else
-        puts "RESPONSE CODE #{res.code} received"
-        res
-      end
+
+      puts "RESPONSE CODE #{res.code} received" if res.code != "200"
+
+      res
     end
   end
 end
