@@ -72,10 +72,9 @@ module RakutenProductApi
     def process_auth_response(res)
       if res.code == "200"
         doc = JSON.parse(res.body)
-        token_type = doc.dig("token_type")
-        @expires_in    = doc.dig("expires_in").to_i
-        @refresh_token = doc.dig("refresh_token")
-        @access_token = doc.dig("access_token")
+        @expires_in    = doc["expires_in"].to_i
+        @refresh_token = doc["refresh_token"]
+        @access_token  = doc["access_token"]
       else
         puts "RESPONSE CODE #{res.code} received"
         res
