@@ -48,6 +48,7 @@ client.username
 => "dkam"
 ```
 
+This client should be threadsafe.  Configuration values are local to your instance.
 
 ### Authentication
 This library needs to query the API to retreive an `access_token` which has an `access_expires_at` time, prior to which, the library will refresh the token
@@ -111,8 +112,6 @@ The API also allows other attribute:
 
 When using sort, you must also use sorttype ( 'asc' or 'dsc').  See the documentation for more.
 
-This client should be threadsafe.  Configuration values are local to your instance.
-
 ## TODO
 
 This library implement the parts I need. For example, it doesn't handle paging through results as I don't need it, but I'm happy to accept pull request.
@@ -127,7 +126,7 @@ This library implement the parts I need. For example, it doesn't handle paging t
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-If you create a file `config.rb`, it will be loaded by `bin/console`, allowing you to configure keys and markets.
+If you create a file `config.rb`, it will be loaded by `bin/console`, allowing you to configure it automatically.
 
 ```ruby
 RakutenProductApi.configure do |config|
