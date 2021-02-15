@@ -29,13 +29,8 @@ module RakutenProductApi
       @auth_expires_at = nil
     end
 
-    def search(keyword: nil, **options)
-      api_request(options.merge(keyword: keyword))
-    end
-    
     def default_params
-      return {mid: @mid} unless @mid.nil?
-      {}
+      @mid.nil? ? {} : {mid: @mid}
     end
     
     def request_auth_token
@@ -105,6 +100,10 @@ module RakutenProductApi
       else
         puts "VALID AUTH"
       end
+    end
+
+    def search(keyword: nil, **options)
+      Response.new(api_request(options.merge(keyword: keyword)))
     end
 
     def api_request(payload)

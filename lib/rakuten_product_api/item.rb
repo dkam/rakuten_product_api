@@ -31,7 +31,7 @@ module RakutenProductApi
       get 'upccode'
     end
 
-    def gtin 
+    def isbn 
       at_xpath("sku")&.text[/97[98]\d{10}/] || at_xpath("keywords")&.text[/97[98]\d{10}/]
     end
 
