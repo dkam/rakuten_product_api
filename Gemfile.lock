@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rakuten_product_api (0.1.0)
+    rakuten_product_api (0.2.0)
       nokogiri (~> 1)
 
 GEM
