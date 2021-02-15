@@ -1,10 +1,10 @@
 # RakutenProductApi
 
-To experiment with that code, run `bin/console` for an interactive prompt.
+To experiment with this library, run `bin/console` for an interactive prompt.
 
 ## API Documentation
 
-The API documentation can be found at the following links.
+The Rakuten Product API documentation can be found at the following links.
 - [API Documentation PDF](https://developers.rakutenmarketing.com/console/registry/resource/_system/governance/apimgt/applicationdata/provider/RakutenMarketing/artifacts/API_Developer_Portal-Acquiring_Your_Access_Token_Guide.pdf)
 - [API Overview](https://developers.rakutenmarketing.com/subscribe/)
 - [API Keys](https://developers.rakutenmarketing.com/subscribe/site/pages/subscriptions.jag)
@@ -48,7 +48,6 @@ client.username
 => "dkam"
 ```
 
-You can specify which merchants to query by using `mid: 38131`
 
 ### Authentication
 This library needs to query the API to retreive an `access_token` which has an `access_expires_at` time, prior to which, the library will refresh the token
@@ -65,8 +64,10 @@ client.access_token
 => "abcd1234"
 ````
 
-### Search
-Search for keywords:
+## Querying
+### Search for keywords:
+
+You can specify which merchants to query by using `mid: 38131`
 
 ```ruby
 results = client.search(keyword: 'Murderbot', mid: 38131)
@@ -89,7 +90,9 @@ results.items[0].rrp
 => ["18.70", "AUD"]
 ```
 
-Search for ISBNs:
+### Search for ISBNs:
+
+You can specify which merchants to query by using `mid: 38131`
 
 ```ruby
 results = client.search(keyword: '9781501977824', mid: 38131)
