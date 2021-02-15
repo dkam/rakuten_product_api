@@ -12,5 +12,5 @@ require "rakuten_product_api"
 # Pry.start
 
 require "irb"
-load 'config.rb' if File.exist? 'config.rb'
+load "config.rb" if File.exist? "config.rb"
 IRB.start(__FILE__)

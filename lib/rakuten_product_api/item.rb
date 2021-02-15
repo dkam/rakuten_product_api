@@ -1,4 +1,4 @@
-require 'forwardable'
+require "forwardable"
 
 module RakutenProductApi
   class Item
@@ -12,58 +12,59 @@ module RakutenProductApi
     end
 
     def title
-      get 'productname'
+      get "productname"
     end
 
     def merchant
-      get 'merchantname'
+      get "merchantname"
     end
-    
+
     def price
       [at_xpath("saleprice")&.text, at_xpath("saleprice/@currency")&.text]
     end
-    
+
     def rrp
       [at_xpath("price")&.text, at_xpath("price/@currency")&.text]
     end
 
     def upc
-      get 'upccode'
+      get "upccode"
     end
 
-    def isbn 
+    def isbn
       at_xpath("sku")&.text[/97[98]\d{10}/] || at_xpath("keywords")&.text[/97[98]\d{10}/]
     end
 
     def link
-      get 'linkurl'
+      get "linkurl"
     end
 
     def image_url
-      get 'imageurl'
+      get "imageurl"
     end
-    
+
     def used?
-      description.match?( /used/i )
+      description.match?(/used/i)
     end
-    
+
     def new?
       !used?
     end
 
     def get(path)
       return nil if path.nil? || path.empty?
+
       @raw.at_xpath(path)&.text
     end
+
     def result_count
       @raw.at_xpath("result/item").count
     end
-    
+
     def method_missing(method_name, *args, &block)
       return get(method_name.to_s) unless get(method_name.to_s).nil?
 
       super
     end
-      
   end
 end
