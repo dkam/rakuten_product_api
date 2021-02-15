@@ -2,8 +2,7 @@ PATH
   remote: .
   specs:
     rakuten_product_api (0.1.0)
-      byebug
-      nokogiri
+      nokogiri (~> 1)
 
 GEM
   remote: https://rubygems.org/
@@ -39,6 +38,7 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
+  byebug (~> 11)
   minitest (~> 5.0)
   rake (~> 13.0)
   rakuten_product_api!
