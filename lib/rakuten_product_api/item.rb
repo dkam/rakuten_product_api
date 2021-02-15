@@ -44,6 +44,18 @@ module RakutenProductApi
       get "imageurl"
     end
 
+    def description_short
+      get "description/short"
+    end
+
+    def description_long
+      get "description/long"
+    end
+
+    def keywords
+      get("keywords")&.split("~~")
+    end
+
     def used?
       description.match?(/used/i)
     end
@@ -62,10 +74,10 @@ module RakutenProductApi
       @raw.at_xpath("result/item").count
     end
 
-    def method_missing(method_name, *args, &block)
-      return get(method_name.to_s) unless get(method_name.to_s).nil?
-
-      super
+    %w[mid merchantname linkid createdon sku productname imageurl linkurl upccode].each do |x|
+      define_method(x) do
+        return get(x)
+      end
     end
   end
 end

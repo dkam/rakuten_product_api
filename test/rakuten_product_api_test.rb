@@ -14,5 +14,6 @@ class RakutenProductApiTest < Minitest::Test
 
     item = response.items.first
     assert_equal "All Systems Red", item.title
+    assert_equal ["All Systems Red", "Adventure Sci Fi", "Science Fiction", "9781501977824"], item.keywords
   end
 end
