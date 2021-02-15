@@ -6,8 +6,9 @@ require "minitest/autorun"
 
 class MockHttpResponse
   attr_accessor :body, :code
+
   def initialize(body)
     @body = body
-    @code = '200'
+    @code = "200"
   end
 end
