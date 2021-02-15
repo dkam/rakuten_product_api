@@ -39,8 +39,6 @@ RakutenProductApi.configure do |config|
 end
 ```
 
-Additionally, you can configure a mid (Merchant ID).  This will be applied to all requests and restrict queries to that merchant.
-
 Once you have configured the library, you can create a client.
 
 ```ruby
@@ -49,6 +47,23 @@ client = RakutenProductApi::Client.new
 client.username
 => "dkam"
 ```
+
+You can specify which merchants to query by using `mid: 38131`
+
+### Authentication
+This library needs to query the API to retreive an `access_token` which has an `access_expires_at` time, prior to which, the library will refresh the token
+
+You can initialise the library with the `access_token` and `access_expires_at` values to avoid this lookup. If the `access_expires_at` is in the past, the library will fetch the value so you can safely cache this value and use it without checking it's expiry.
+
+```ruby
+client = RakutenProductApi::Client.new(access_token: 'abcd1234', access_expires_at: 1613362973)
+
+client.username
+=> "dkam"
+
+client.access_token
+=> "abcd1234"
+````
 
 ### Search
 Search for keywords:

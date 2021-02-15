@@ -35,22 +35,12 @@ module RakutenProductApi
       @consumer_secret = consumer_secret
     end
 
-    def set_default_param; end
-
-    def default_params
-      dp = {}
-      dp[:mid]      = @mid unless @mid.nil?
-      dp[:sort]     = @sort unless @sort.nil?
-      dp[:sorttype] = @sorttype unless @sorttype.nil?
-      dp
-    end
-
     def search(keyword: nil, **options)
       Response.new(api_request(options.merge(keyword: keyword)))
     end
 
     def api_request(payload)
-      params = default_params.merge(payload).map { |k, v| "#{k}=#{v}" }.join("&")
+      params = payload.map { |k, v| "#{k}=#{v}" }.join("&")
       uri = URI("https://api.rakutenmarketing.com/productsearch/1.0?#{params}")
 
       res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
