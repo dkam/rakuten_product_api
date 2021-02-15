@@ -50,7 +50,56 @@ client.username
 => "dkam"
 ```
 
+### Search
+Search for keywords:
+
+```ruby
+results = client.search(keyword: 'Murderbot', mid: 38131)
+results.items.count
+=> 7
+
+results.items[0].merchant
+=> "Rakuten Kobo Australia"
+
+results.items[0].isbn
+=> "9781250185464"
+
+results.items[0].title
+=> "Exit Strategy"
+
+results.items[0].price
+=> ["15.06", "AUD"]
+
+results.items[0].rrp
+=> ["18.70", "AUD"]
+```
+
+Search for ISBNs:
+
+```ruby
+results = client.search(keyword: '9781501977824', mid: 38131)
+results.items[0].gtin
+=> "9781501977824"
+results.items[0].title
+=> "All Systems Red"
+```
+
+The API also allows other attribute:
+
+* exact
+* one
+* none
+* sort & sorttype
+
+When using sort, you must also use sorttype ( 'asc' or 'dsc').  See the documentation for more.
+
 This client should be threadsafe.  Configuration values are local to your instance.
+
+## Notes
+
+* ISBN is taken from either the `sku` or the `keywords` fields and mached against a regular expression `/97[98]\d{10}/` as there's no specific field for it.
+* Condition is guessed by looking for the string "Used" in the description.  This is a terrible idea, but there is no field for condition.
+* This library aliases RRP -> price and price -> saleprice.  When sorting you need to use the original attribute names ( price / saleprice )
 
 
 ## Development

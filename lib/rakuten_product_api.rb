@@ -3,6 +3,8 @@ require 'byebug'
 require_relative "rakuten_product_api/version"
 require_relative "rakuten_product_api/client"
 require_relative "rakuten_product_api/response"
+require_relative "rakuten_product_api/item"
+
 module RakutenProductApi
   class Error < StandardError; end
 
