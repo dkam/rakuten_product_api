@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-require "byebug"
 require "json"
+require "forwardable"
 require_relative "rakuten_product_api/version"
+require_relative "rakuten_product_api/authenticate"
 require_relative "rakuten_product_api/client"
 require_relative "rakuten_product_api/response"
 require_relative "rakuten_product_api/item"

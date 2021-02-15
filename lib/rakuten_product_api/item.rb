@@ -1,5 +1,3 @@
-require "forwardable"
-
 module RakutenProductApi
   class Item
     extend Forwardable
