@@ -45,7 +45,7 @@ Once you have configured the library, you can create a client.
 client = RakutenProductApi::Client.new
 
 client.username
-=> "dkam"
+=> "your-rakuten-username"
 ```
 
 This client should be threadsafe.  Configuration values are local to your instance.
