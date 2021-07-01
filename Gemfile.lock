@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rakuten_product_api (0.2.0)
+    rakuten_product_api (0.3.0)
       nokogiri (~> 1)
 
 GEM
@@ -10,7 +10,7 @@ GEM
     ast (2.4.2)
     byebug (11.1.3)
     minitest (5.14.4)
-    nokogiri (1.11.4-x86_64-darwin)
+    nokogiri (1.11.7-x86_64-darwin)
       racc (~> 1.4)
     parallel (1.20.1)
     parser (3.0.1.1)
@@ -20,16 +20,16 @@ GEM
     rake (13.0.3)
     regexp_parser (2.1.1)
     rexml (3.2.5)
-    rubocop (1.15.0)
+    rubocop (1.18.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml
-      rubocop-ast (>= 1.5.0, < 2.0)
+      rubocop-ast (>= 1.7.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.5.0)
+    rubocop-ast (1.7.0)
       parser (>= 3.0.1.1)
     ruby-progressbar (1.11.0)
     unicode-display_width (2.0.0)

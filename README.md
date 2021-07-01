@@ -68,7 +68,7 @@ client.access_token
 ## Querying
 ### Search for keywords:
 
-You can specify which merchants to query by using `mid: 38131`
+You can specify which merchants to query by using mid paramater.  For example Kobo Australia would be: `mid: 38131`
 
 ```ruby
 results = client.search(keyword: 'Murderbot', mid: 38131)
