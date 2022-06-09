@@ -29,8 +29,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
-  spec.add_dependency "nokogiri", ">= 1.13.6"
-
+  spec.add_runtime_dependency 'nokogiri', '~> 1.13', '>= 1.13.6'
   spec.add_development_dependency "byebug", "~> 11"
 
   # For more information and examples about making a new gem, checkout our
