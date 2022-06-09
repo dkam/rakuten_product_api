@@ -5,9 +5,9 @@ To experiment with this library, run `bin/console` for an interactive prompt.
 ## API Documentation
 
 The Rakuten Product API documentation can be found at the following links.
-- [API Documentation PDF](https://developers.rakutenmarketing.com/console/registry/resource/_system/governance/apimgt/applicationdata/provider/RakutenMarketing/artifacts/API_Developer_Portal-Acquiring_Your_Access_Token_Guide.pdf)
-- [API Overview](https://developers.rakutenmarketing.com/subscribe/)
-- [API Keys](https://developers.rakutenmarketing.com/subscribe/site/pages/subscriptions.jag)
+- [Tryout Guide](https://developers.rakutenadvertising.com/guides/try_out_apis)
+- [Product Search](https://developers.rakutenadvertising.com/guides/product_search)
+- [API Keys](https://developers.rakutenadvertising.com/default/dashboard/applications/)
 
 ## Installation
 

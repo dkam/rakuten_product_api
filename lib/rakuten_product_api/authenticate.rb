@@ -7,23 +7,19 @@ require "json"
 module RakutenProductApi
   class Authenticate
     REFRESH_TOKEN_LEEWAY = 60 * 10 # Ten minutes prior to expiry we should refresh token
-    attr_accessor :sid, :username, :password, :consumer_key, :consumer_secret, :access_token, :access_expires_at
+    attr_accessor :sid, :username, :password, :access_token, :access_token_expires_at, :refresh_token
 
     def initialize(sid:               RakutenProductApi.sid,
-                   username:          RakutenProductApi.username,
-                   password:          RakutenProductApi.password,
-                   consumer_key:      RakutenProductApi.consumer_key,
-                   consumer_secret:   RakutenProductApi.consumer_secret,
+                   client_id:         RakutenProductApi.client_id,
+                   client_secret:     RakutenProductApi.client_secret,
                    access_token:      nil,
-                   access_expires_at: nil)
+                   access_token_expires_at: nil)
 
-      @sid               = sid
-      @username          = username
-      @password          = password
-      @consumer_key      = consumer_key
-      @consumer_secret   = consumer_secret
+      @sid               = sid # account-id ?
       @access_token      = access_token
-      @access_expires_at = access_expires_at
+      @access_token_expires_at = access_token_expires_at
+      @client_id         = client_id
+      @client_secret     = client_secret
     end
 
     def auth_header
@@ -31,30 +27,24 @@ module RakutenProductApi
       "Bearer #{@access_token}"
     end
 
-    def request_auth_token
-      Base64.strict_encode64("#{@consumer_key}:#{@consumer_secret}").strip
+    def token_key
+      Base64.strict_encode64("#{@client_id}:#{@client_secret}").strip
     end
 
-    def api_request_auth
-      res = auth_request(
-        "https://api.rakutenmarketing.com/token",
-        { grant_type: "password", username: @username, password: @password, scope: @sid }
-      )
+    def api_request_auth_token
+      res = auth_request( { scope: @sid } )
 
       process_auth_response(res)
 
-      @access_expires_at = Time.now.to_i + @expires_in
+      @access_token_expires_at = Time.now.to_i + @expires_in
     end
 
-    def refresh_api_request_auth
-      res = auth_request(
-        "https://api.rakutenmarketing.com/token",
-        { grant_type: "refresh_token", refresh_token: @refresh_token, scope: "Production" }
-      )
+    def refresh_api_request_auth_token
+      res = auth_request( { refresh_token: @refresh_token, scope: @sid}  )
 
       process_auth_response(res)
 
-      @access_expires_at = Time.now.to_i + @expires_in
+      @access_token_expires_at = Time.now.to_i + @expires_in
     end
 
     def process_auth_response(res)
@@ -69,11 +59,11 @@ module RakutenProductApi
       end
     end
 
-    def auth_request(url, payload)
-      uri = URI(url)
+    def auth_request(payload)
+      uri = URI('https://api.linksynergy.com/token')
       Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
         req = Net::HTTP::Post.new(uri)
-        req["Authorization"] = "Basic #{request_auth_token}"
+        req["Authorization"] = "Bearer #{token_key}"
 
         req.set_form_data(payload)
         http.request(req)
@@ -81,15 +71,15 @@ module RakutenProductApi
     end
 
     def ensure_authentication
-      if @access_expires_at.nil?
-        # puts "NIL: getting auth"
-        api_request_auth
-      elsif Time.now.to_i > @access_expires_at
-        # puts "EXPIRED: getting auth"
-        api_request_auth
-      elsif Time.now.to_i > (@access_expires_at + REFRESH_TOKEN_LEEWAY)
-        # puts "REFRESH LEEWAY: getting auth"
-        refresh_api_request_auth
+      if @access_token_expires_at.nil?
+        puts "NO TOKEN: getting auth token"
+        api_request_auth_token
+      elsif Time.now.to_i > @access_token_expires_at
+        puts "EXPIRED TOKEN: getting auth token"
+        api_request_auth_token
+      elsif Time.now.to_i > (@access_token_expires_at - REFRESH_TOKEN_LEEWAY)
+        puts "TOKEN EXPIRES WITHIN LEEWAY : refresh auth token"
+        refresh_api_request_auth_token
       end
     end
   end

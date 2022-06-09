@@ -21,7 +21,9 @@ module RakutenProductApi
                   :consumer_secret,
                   :mid,
                   :sort,
-                  :sorttype
+                  :sorttype,
+                  :client_id,
+                  :client_secret
 
     def configure
       yield self

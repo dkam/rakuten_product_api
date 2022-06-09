@@ -10,29 +10,17 @@ module RakutenProductApi
     def_delegators :@authenticate, :access_token, :access_expires_at
     REFRESH_TOKEN_LEEWAY = 60 * 10 # Ten minutes prior to expiry we should refresh token
 
-    attr_accessor :sid, :username, :password, :consumer_key, :consumer_secret, :authenticate
+    attr_accessor :sid, :username, :password, :authenticate
 
-    def initialize(sid:               RakutenProductApi.sid,
-                   username:          RakutenProductApi.username,
-                   password:          RakutenProductApi.password,
-                   consumer_key:      RakutenProductApi.consumer_key,
-                   consumer_secret:   RakutenProductApi.consumer_secret,
-                   access_token:      nil,
-                   access_expires_at: nil)
-
+    def initialize(sid: RakutenProductApi.sid,
+                   access_token: nil,
+                   access_token_expires_at: nil)
+  
+      @sid = sid
       @authenticate = Authenticate.new(sid: sid,
-                                       username: username,
-                                       password: password,
-                                       consumer_key: consumer_key,
-                                       consumer_secret: consumer_secret,
                                        access_token: access_token,
-                                       access_expires_at: access_expires_at)
+                                       access_token_expires_at: access_token_expires_at)
 
-      @sid             = sid
-      @username        = username
-      @password        = password
-      @consumer_key    = consumer_key
-      @consumer_secret = consumer_secret
     end
 
     def search(keyword: nil, **options)
