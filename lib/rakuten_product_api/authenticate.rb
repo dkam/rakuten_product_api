@@ -7,19 +7,21 @@ require "json"
 module RakutenProductApi
   class Authenticate
     REFRESH_TOKEN_LEEWAY = 60 * 10 # Ten minutes prior to expiry we should refresh token
-    attr_accessor :sid, :username, :password, :access_token, :access_token_expires_at, :refresh_token
+    attr_accessor :sid, :endpoint, :access_token, :access_token_expires_at, :refresh_token
 
-    def initialize(sid:               RakutenProductApi.sid,
-                   client_id:         RakutenProductApi.client_id,
-                   client_secret:     RakutenProductApi.client_secret,
-                   access_token:      nil,
-                   access_token_expires_at: nil)
+    def initialize( sid:               RakutenProductApi.sid,
+                    client_id:         RakutenProductApi.client_id,
+                    client_secret:     RakutenProductApi.client_secret,
+                    endpoint:          RakutenProductApi.endpoint,
+                    access_token:      nil,
+                    access_token_expires_at: nil)
 
       @sid               = sid # account-id ?
       @access_token      = access_token
       @access_token_expires_at = access_token_expires_at
       @client_id         = client_id
       @client_secret     = client_secret
+      @endpoint          = endpoint
     end
 
     def auth_header
@@ -60,7 +62,7 @@ module RakutenProductApi
     end
 
     def auth_request(payload)
-      uri = URI('https://api.linksynergy.com/token')
+      uri = URI("#{@endpoint}/token")
       Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
         req = Net::HTTP::Post.new(uri)
         req["Authorization"] = "Bearer #{token_key}"

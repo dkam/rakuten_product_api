@@ -15,24 +15,17 @@ module RakutenProductApi
 
   class << self
     attr_accessor :sid,
-                  :username,
-                  :password,
-                  :consumer_key,
-                  :consumer_secret,
                   :mid,
                   :sort,
                   :sorttype,
                   :client_id,
-                  :client_secret
+                  :client_secret,
+                  :endpoint
 
     def configure
+      self.endpoint = 'https://api.linksynergy.com' # Set a default API Endpoint
       yield self
-      true
     end
     alias config configure
-
-    def hello
-      puts "Oh Hai"
-    end
   end
 end
