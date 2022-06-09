@@ -11,7 +11,7 @@ require_relative "rakuten_product_api/item"
 module RakutenProductApi
   class Error < StandardError; end
 
-  APPLICATION_END_POINT = "https://api.rakutenmarketing.com/productsearch/1.0"
+  APPLICATION_END_POINT = "https://api.linksynergy.com"
 
   class << self
     attr_accessor :sid,
@@ -23,7 +23,7 @@ module RakutenProductApi
                   :endpoint
 
     def configure
-      self.endpoint = 'https://api.linksynergy.com' # Set a default API Endpoint
+      self.endpoint = APPLICATION_END_POINT # Set a default API Endpoint
       yield self
     end
     alias config configure

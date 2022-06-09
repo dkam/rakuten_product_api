@@ -28,9 +28,7 @@ module RakutenProductApi
 
     def search(**options)
       params = %i{ keyword exact one none cat language max pagenumber mid, sort, sorttype }
-      
       allowed_options = options.select {|k, v| params.include?(k)}
-      
       Response.new(api_request(options, '/productsearch/1.0'))
     end
 
