@@ -32,10 +32,8 @@ The library can be configured with an initializer. For Rails, create the file `c
 ```ruby
 RakutenProductApi.configure do |config|
   config.sid             = 'your-site-id'
-  config.username        = 'your-rakuten-username'
-  config.password        = 'your-rakuten-password'
-  config.consumer_key    = 'your-consumer-key'
-  config.consumer_secret = 'your-consumer-secret'
+  config.client_id       = 'your-client-id'
+  config.client_secret   = 'your-client-secret'
 end
 ```
 
@@ -44,8 +42,8 @@ Once you have configured the library, you can create a client.
 ```ruby
 client = RakutenProductApi::Client.new
 
-client.username
-=> "your-rakuten-username"
+client.sid
+=> "your-site-id"
 ```
 
 This client should be threadsafe.  Configuration values are local to your instance.
@@ -58,8 +56,8 @@ You can initialise the library with the `access_token` and `access_expires_at` v
 ```ruby
 client = RakutenProductApi::Client.new(access_token: 'abcd1234', access_expires_at: 1613362973)
 
-client.username
-=> "dkam"
+client.endpoint
+=> "https://api.linksynergy.com"
 
 client.access_token
 => "abcd1234"
