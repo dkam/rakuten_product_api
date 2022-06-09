@@ -74,13 +74,13 @@ module RakutenProductApi
 
     def ensure_authentication
       if @access_token_expires_at.nil?
-        puts "NO TOKEN: getting auth token"
+        #puts "NO TOKEN: getting auth token"
         api_request_auth_token
       elsif Time.now.to_i > @access_token_expires_at
-        puts "EXPIRED TOKEN: getting auth token"
+        #puts "EXPIRED TOKEN: getting auth token"
         api_request_auth_token
       elsif Time.now.to_i > (@access_token_expires_at - REFRESH_TOKEN_LEEWAY)
-        puts "TOKEN EXPIRES WITHIN LEEWAY : refresh auth token"
+        #puts "TOKEN EXPIRES WITHIN LEEWAY : refresh auth token"
         refresh_api_request_auth_token
       end
     end
