@@ -56,7 +56,7 @@ This library needs to query the API to retreive an `access_token` which has an `
 You can initialise the library with the `access_token` and `access_token_expires_at` values to avoid this lookup. If the `access_token_expires_at` is nil or in the past, the library will fetch the value so you can safely cache this value and use it without checking it's expiry.
 
 ```ruby
-client = RakutenProductApi::Client.new(access_token: 'abcd1234', access_expires_at: 1613362973)
+client = RakutenProductApi::Client.new(access_token: 'abcd1234', access_token_expires_at: 1613362973)
 
 client.endpoint
 => "https://api.linksynergy.com"

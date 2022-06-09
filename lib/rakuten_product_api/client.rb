@@ -7,7 +7,7 @@ require "nokogiri"
 module RakutenProductApi
   class Client
     extend Forwardable
-    def_delegators :@authenticate, :access_token, :access_expires_at
+    def_delegators :@authenticate, :access_token, :access_token_expires_at
     REFRESH_TOKEN_LEEWAY = 60 * 10 # Ten minutes prior to expiry we should refresh token
 
     attr_accessor :sid, :username, :password, :authenticate
